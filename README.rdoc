@@ -1,0 +1,10 @@
+=== Get On With It
+Whoa! Lists!
+
+It's still early days.
+
+Start the websocket server with:
+rackup faye.ru -s thin -E production
+
+Then the rails app:
+rails s

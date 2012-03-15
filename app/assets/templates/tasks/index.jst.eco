@@ -1,0 +1,8 @@
+<h1>Tasks</h1>
+
+<form id="new_task">
+  <input type="text" name="description" id="new_task_description">
+  <input type="submit" value="add">
+</form>
+
+<ul id="tasks"></ul>
