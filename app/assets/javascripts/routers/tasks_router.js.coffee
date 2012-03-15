@@ -9,7 +9,7 @@ class Gowi.Routers.Tasks extends Backbone.Router
   
   index: ->
     view = new Gowi.Views.TasksIndex(collection: @collection)
-    $('#container').html(view.render().el)
+    $('#container').html(view.render().el).hide().fadeIn('fast')
   
   show: (id) ->
     alert "Task #{id}"

@@ -8,6 +8,11 @@ class Gowi.Views.TasksIndex extends Backbone.View
   initialize: =>
     @collection.on('reset', @render, this)
     @collection.on('add', @appendTask, this)
+    faye = new Faye.Client('http://localhost:9292/faye')
+    faye.subscribe '/tasks/new',
+        (data) =>
+            @collection.addUnlessExisting data
+            return
   
   render: ->
     $(@el).html(@template())
@@ -26,7 +31,10 @@ class Gowi.Views.TasksIndex extends Backbone.View
       wait: true
       success: -> $('#new_task')[0].reset()
       error: @handleError
-    
+  
+  addRemoteTask: (task) =>
+    @collection.add task
+  
   handleError: (task, response) ->
     if response.status == 422
       errors = $.parseJSON(response.responseText).errors
